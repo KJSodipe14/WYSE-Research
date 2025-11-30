@@ -1,6 +1,5 @@
-# WYSE-Research
-# Transfer Function Characterization of Coaxial Cables
-
+WYSE-Research
+Transfer Function Characterization of Coaxial Cables
 Frequency-Dependent Magnitude and Phase Modeling
 
 This project analyzes the AC transfer function of multiple coaxial cables by fitting theoretical attenuation and phase-shift models to experimental data. The goal is to build accurate, frequency-dependent models that describe how real cables behave from low kilohertz to hundreds of megahertz.
@@ -23,11 +22,9 @@ Non-ideal variations caused by manufacturing tolerances
 
 The objective of this project is to derive empirical functions for:
 
-Magnitude:
-Loss(f) [decibels per 100 m]
+Magnitude: Loss(f) in decibels per 100 m
 
-Phase:
-Phase(f) [radians per 100 m]
+Phase: Phase(f) in radians per 100 m
 
 These functions can be used for transmission-line simulations, signal-integrity modeling, and high-frequency system analysis.
 
@@ -55,7 +52,7 @@ Data includes:
 
 1 MHz magnitude measurements (high-frequency scatter region)
 
-High-frequency magnitude and phase data from additional measurements
+High-frequency magnitude and phase data
 
 Phase data extracted from square-wave timing offsets
 
@@ -71,39 +68,74 @@ Square-root term → skin effect
 
 Linear term → dielectric loss
 
-A generic model form is:
+Model:
 
-Loss(f) = a + b * sqrt(f) + c * f
+Loss
+(
+𝑓
+)
+=
+𝑎
++
+𝑏
+𝑓
++
+𝑐
+𝑓
+Loss(f)=a+b
+f
+	​
 
-Coefficients are obtained via nonlinear regression.
++cf
+
+Coefficients are extracted using nonlinear regression.
 
 3. Phase Model
 
 Phase is modeled using frequency-dependent delay:
 
-Phase(f) = -2 * pi * f * τ(f)
+Phase
+(
+𝑓
+)
+=
+−
+2
+𝜋
+𝑓
+ 
+𝜏
+(
+𝑓
+)
+Phase(f)=−2πfτ(f)
 
-Where the delay τ(f) is derived from:
+Where the delay 
+𝜏
+(
+𝑓
+)
+τ(f) depends on:
 
-Cable dielectric constant
+Dielectric constant
 
 Distributed L and C parameters
 
-Decreasing phase velocity at higher frequencies
+Frequency-dependent phase velocity
 
 This produces a smooth, monotonic phase curve consistent with transmission-line theory.
 
 Results Summary
 
-Magnitude fits match measured attenuation from about 1 kHz to 100+ MHz.
+Magnitude fits match measured attenuation from ~1 kHz to 100+ MHz.
 
-Phase fits accurately capture the expected delay behavior.
+Phase fits accurately capture expected frequency-dependent delay.
 
-10 kHz and 1 MHz datasets provide stable references for low and mid frequencies.
+10 kHz and 1 MHz datasets provide stable low-/mid-frequency anchors.
 
-High-frequency data exhibits large scatter but still forms a reliable trend.
+High-frequency data exhibits large scatter but still follows a clear trend.
 
-The CB50 cable shows substantially higher high-frequency attenuation than the AC cable.
+The CB50 cable exhibits significantly higher high-frequency attenuation than the AC cable.
 
 Reproducing the Results
 
@@ -112,7 +144,7 @@ Install dependencies:
 pip install numpy scipy matplotlib pandas
 
 
-Open any notebook such as:
+Open a notebook such as:
 
 transfer-function-intro.ipynb
 
@@ -121,15 +153,15 @@ Then run all cells. Each notebook:
 
 Loads measurement data
 
-Selects data windows (10 kHz → 1 MHz → high-frequency region)
+Selects frequency windows
 
-Fits the magnitude and phase functions
+Fits magnitude and phase functions
 
-Produces the plots included in this repository
+Generates the included plots
 
 Applications
 
-The models developed here can be applied to:
+This model supports:
 
 Signal integrity simulations
 
@@ -139,4 +171,4 @@ RF system design
 
 Cable quality assessment
 
-Prediction of attenuation and phase shift over frequency
+Prediction of attenuation and phase shift across frequency
